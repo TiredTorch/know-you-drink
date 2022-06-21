@@ -8,6 +8,7 @@ import { mainCanvasStyles } from "./MainCanvas.styles";
 import { Bar } from "./meshes/Bar/Bar";
 import { Bulb } from "./meshes/Bulb/Bulb";
 import { CafeBuilding } from "./meshes/CafeBuilding/CafeBuilding";
+import { LightSwitch } from "./meshes/LightSwitch/LightSwitch";
 
 export const MainCanvas = () => {
 
@@ -26,6 +27,7 @@ export const MainCanvas = () => {
         }}
         >
           <Bulb />
+          <LightSwitch />
           <CafeBuilding />
           <Bar />
           <CameraHelper />
