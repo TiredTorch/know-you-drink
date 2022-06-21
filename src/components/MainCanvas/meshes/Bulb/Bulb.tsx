@@ -34,7 +34,7 @@ export const Bulb = () => {
     <group dispose={null}>
       <group 
         rotation={[-Math.PI / 2, 0, 0]}
-        position={[0, .5, 0]}
+        position={[0, 1, 0]}
       >
         <group rotation={[Math.PI / 2, 0, 0]} scale={0.01}>
           <group scale={0.15}>

@@ -29,11 +29,11 @@ export const CafeBuilding = () => {
     <mesh
       receiveShadow
       material={materials}
-      position={[0, 0, 0]}
+      position={[0, .4, 0]}
     >
       <boxBufferGeometry
         attach={"geometry"}
-        args={[5, 2, 5]}
+        args={[5, 2.8, 5]}
       />
     </mesh>
   );

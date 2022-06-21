@@ -15,8 +15,8 @@ export const Camera = () => {
       breakpoint: .5
     },
     {
-      pos: [1.66, 0.57, 0.62],
-      rot: [-1.22, -1.44, -1.23],
+      pos: [1.66, 0.87, 0.62],
+      rot: [-1.22, -1.64, -1.23],
       breakpoint: 1
     }
   ];
