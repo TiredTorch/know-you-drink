@@ -9,7 +9,7 @@ export const EffectHelper = () => {
 
   useFrame(() => {
     if (vignetteRef.current) {
-      vignetteRef.current.offset = (canvasStore.isLightOn ? .1 : .4);
+      vignetteRef.current.offset = (canvasStore.isLightOn ? .1 : .3);
     }
   });
 

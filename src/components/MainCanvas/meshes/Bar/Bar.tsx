@@ -8,6 +8,8 @@ export const Bar = () => {
   return (
     <mesh
       position={[2, -.6, .5]}
+      castShadow
+      receiveShadow
     >
       <boxBufferGeometry
         args={[1, .8, 2]}

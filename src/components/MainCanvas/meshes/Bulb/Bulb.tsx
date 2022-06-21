@@ -23,7 +23,7 @@ export const Bulb = () => {
 
   useFrame(() => {
     if (light.current && glass.current) {
-      light.current.intensity = canvasStore.isLightOn ? .6 : .1;
+      light.current.intensity = canvasStore.isLightOn ? .2 : .0;
       const material = glass.current.material as MeshStandardMaterial;
       material.emissive = new Color(canvasStore.isLightOn ? "yellow" : "black");
       material.emissiveIntensity = 1;
@@ -45,7 +45,8 @@ export const Bulb = () => {
       </group>
       <pointLight
         ref={light}
-        position={[0, 0, 0]}
+        position={[0, 1, 0]}
+        castShadow
       />
     </group>
     // <group>
