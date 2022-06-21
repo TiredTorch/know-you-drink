@@ -1,5 +1,5 @@
 import { useLoader } from "@react-three/fiber";
-import { BackSide, MeshStandardMaterial, RepeatWrapping, TextureLoader } from "three";
+import { BackSide, MeshPhysicalMaterial, RepeatWrapping, TextureLoader } from "three";
 import wall from "../../../../assets/img/cafeBackground/wall.jpg";
 import floor from "../../../../assets/img/cafeBackground/floor.jpg";
 import ceiling from "../../../../assets/img/cafeBackground/ceiling.jpg";
@@ -21,16 +21,17 @@ export const CafeBuilding = () => {
     if (item === wall) {
       texture.repeat.set(5, 1);
     }
-    const material = new MeshStandardMaterial({ map: texture, side: BackSide, });
+    const material = new MeshPhysicalMaterial({ map: texture, side: BackSide, });
     return material;
   });
 
   return (
     <mesh
+      receiveShadow
       material={materials}
       position={[0, 0, 0]}
     >
-      <boxBufferGeometry 
+      <boxBufferGeometry
         attach={"geometry"}
         args={[5, 2, 5]}
       />
