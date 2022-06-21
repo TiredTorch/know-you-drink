@@ -1,6 +1,9 @@
+import { MainCanvas } from "./components/MainCanvas/MainCanvas";
 
 export const App = () => {
   return (
-    <div>App</div>
+    <>
+      <MainCanvas />
+    </>
   );
 };

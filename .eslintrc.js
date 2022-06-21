@@ -25,7 +25,7 @@ module.exports = {
         "react/react-in-jsx-scope": "off",
         "linebreak-style": [
             "error",
-            "unix"
+            "windows"
         ],
         "quotes": [
             "error",
