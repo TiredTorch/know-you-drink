@@ -2,7 +2,6 @@ import { DrinkDescriptionBox } from "./components/DrinkDescriptionBox/DrinkDescr
 import { MainCanvas } from "./components/MainCanvas/MainCanvas";
 
 export const App = () => {
-  
   return (
     <>
       <DrinkDescriptionBox />

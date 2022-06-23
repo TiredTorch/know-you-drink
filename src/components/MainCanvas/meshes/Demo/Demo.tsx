@@ -1,4 +1,7 @@
-
+/**
+ * 
+ * Dev component for features test-driving
+ */
 export const Demo = () => {
   return (
     <>

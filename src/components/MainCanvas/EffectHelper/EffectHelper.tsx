@@ -1,14 +1,17 @@
+import { useRef } from "react";
 import { useFrame } from "@react-three/fiber";
 import { EffectComposer, Sepia, Vignette } from "@react-three/postprocessing";
 import { BlendFunction } from "postprocessing";
-import { useRef } from "react";
 import { useCanvasState } from "../../../store/store";
+import { CustomVignetteEffect } from "./EffectHelper.types";
+import { useCameraScrollMovement } from "../../../hooks/useCameraScrollMovement/useCameraScrollMovement";
 
 export const EffectHelper = () => {
-  const vignetteRef = useRef<any>(null);
-
+  const vignetteRef = useRef<CustomVignetteEffect>(null);
   const { isLightOn } = useCanvasState();
 
+  useCameraScrollMovement();
+  
   useFrame(() => {
     if (vignetteRef.current) {
       vignetteRef.current.offset = (isLightOn ? .1 : .3);

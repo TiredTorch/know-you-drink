@@ -1,14 +1,18 @@
-import { Box, Button, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
+import { Box, Button, Typography } from "@mui/material";
 import { useCanvasState, useDrinksData, useDrinkState } from "../../store/store";
 import { drinkDescriptionBoxStyles } from "./DrinkDescriptionBox.styles";
 
 export const DrinkDescriptionBox = () => {
   const [currentPage, setCurrentPage] = useState(0);
-
   const { isDescriptionActive } = useCanvasState();
   const { title, description, setDrinkState } = useDrinkState();
   const { data } = useDrinksData();
+  
+  useEffect(() => {
+    setDrinkState(data[currentPage]);
+
+  }, [currentPage]);
 
   const handlePrevPage = () => {
     if (currentPage !== 0) {
@@ -20,13 +24,6 @@ export const DrinkDescriptionBox = () => {
       setCurrentPage(currentPage + 1);
     }
   };
-
-  useEffect(() => {
-    setDrinkState(data[currentPage]);
-
-  }, [currentPage]);
-
-
   return (
     <Box
       component={"div"}

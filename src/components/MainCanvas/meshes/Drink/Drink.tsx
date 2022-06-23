@@ -1,7 +1,7 @@
-import { useBox } from "@react-three/cannon";
-import { useGLTF } from "@react-three/drei";
 import { FC } from "react";
 import { Mesh } from "three";
+import { useBox } from "@react-three/cannon";
+import { useGLTF } from "@react-three/drei";
 import { DrinkProps } from "./Drink.types";
 
 export const Drink: FC<DrinkProps> = ({

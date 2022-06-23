@@ -1,6 +1,6 @@
+import { useRef } from "react";
 import { useBox } from "@react-three/cannon";
 import { useLoader } from "@react-three/fiber";
-import { useRef } from "react";
 import { Mesh, TextureLoader } from "three";
 import barTexture from "../../../../assets/img/barSide.jpg";
 
@@ -15,8 +15,8 @@ export const Bar = () => {
     position: [1.54, .2, .5]
   }));
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const ref = useRef<any>({ref1, ref2});
-
   return (
     <mesh
       ref={ref}

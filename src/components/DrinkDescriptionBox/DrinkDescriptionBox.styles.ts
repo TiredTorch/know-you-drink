@@ -31,7 +31,6 @@ export const drinkDescriptionBoxStyles = {
     height: "60vh",
     overflowY: "auto",
     paddingRight: "2vw",
-
     "&::-webkit-scrollbar": {
       width: "7px",
       borderRadius: "30px",
