@@ -1,5 +1,6 @@
 import { useScroll } from "@react-three/drei";
 import { useFrame, useThree } from "@react-three/fiber";
+import { useCanvasState } from "../../../../store/store";
 import { CameraPositionProps } from "./Camera.types";
 
 export const Camera = () => {
@@ -23,6 +24,7 @@ export const Camera = () => {
 
   const { camera } = useThree();
   const scroll = useScroll();
+  const { setIsDescriptionActive } = useCanvasState();
 
   useFrame(({ mouse, viewport }) => {
     const x = (mouse.x * viewport.width) / 100;
@@ -50,7 +52,7 @@ export const Camera = () => {
         ...([0, 1, 2].map((i) => getCoordWithSliderRange(v1.pos, v2.pos, i, [0, .8], 1)) as [number, number, number])
       );
       camera.rotation.set(
-        ...([-y, x, -y].map((pointer, index) => (getCoordWithSliderRange(v1.rot, v2.rot, index, [0, .8], 1) + pointer)) as [number, number, number])
+        ...([-y, -x, -y].map((pointer, index) => (getCoordWithSliderRange(v1.rot, v2.rot, index, [0, .8], 1) + pointer)) as [number, number, number])
       );
     }
     if (scroll.visible(.8, 1)) {
@@ -69,6 +71,11 @@ export const Camera = () => {
       camera.rotation.set(
         ...([-x, -y, -x].map((pointer, index) => getCoordWithSliderRange(v1.rot, v2.rot, index, [.8, 1], .2) + pointer) as [number, number, number])
       );
+    }
+
+    setIsDescriptionActive(false);
+    if (scroll.visible(.7, .22)) {
+      setIsDescriptionActive(true);
     }
 
   });

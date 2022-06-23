@@ -1,17 +1,28 @@
+import { useState, useEffect, Suspense } from "react";
 import { Box } from "@mui/material";
-import { OrbitControls, ScrollControls } from "@react-three/drei";
+import { Debug, Physics } from "@react-three/cannon";
+import { ScrollControls } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
-import React from "react";
+import { useCanvasState, useDrinkState } from "../../store/store";
 import { CameraHelper } from "./CameraHelper/CameraHelper";
 import { EffectHelper } from "./EffectHelper/EffectHelper";
 import { mainCanvasStyles } from "./MainCanvas.styles";
 import { Bar } from "./meshes/Bar/Bar";
 import { Bulb } from "./meshes/Bulb/Bulb";
 import { CafeBuilding } from "./meshes/CafeBuilding/CafeBuilding";
-import { Demo } from "./meshes/Demo/Demo";
 import { LightSwitch } from "./meshes/LightSwitch/LightSwitch";
 
 export const MainCanvas = () => {
+
+  const { model } = useDrinkState();
+  const { isDescriptionActive } = useCanvasState();
+
+  const [activeModel, setActiveModel] = useState([model]);
+
+  useEffect(() => {
+    setActiveModel([model]);
+  }, [model]);
+
 
   return (
     <Box
@@ -21,19 +32,33 @@ export const MainCanvas = () => {
       <Canvas
         shadows
       >
-        <ScrollControls
-          damping={1}
-          style={{
-            left: "15px"
-          }}
-        >
-          <Bulb />
-          <LightSwitch />
-          <CafeBuilding />
-          <Bar /> 
-          <CameraHelper />
-        </ScrollControls>
-        <EffectHelper />
+        <Physics>
+
+          <ScrollControls
+            damping={1}
+            style={{
+              left: "15px"
+            }}
+          >
+            <Suspense fallback={null}> {/*Bar outlook*/}
+              <Bulb />
+              <LightSwitch />
+              <CafeBuilding />
+              <Bar />
+            </Suspense>
+            <Suspense fallback={null}> {/*Mapped drink models*/}
+              {
+                isDescriptionActive && (
+                  activeModel?.map((item) => item)
+                )
+              }
+            </Suspense>
+            <> {/*Effects*/}
+              <CameraHelper />
+              <EffectHelper />
+            </>
+          </ScrollControls>
+        </Physics>
       </Canvas>
     </Box>
   );

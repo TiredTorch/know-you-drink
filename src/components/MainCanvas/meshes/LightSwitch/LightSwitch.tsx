@@ -1,7 +1,7 @@
 import { useGLTF } from "@react-three/drei";
 import { Mesh, MeshStandardMaterial } from "three";
 import { GLTF } from "three-stdlib";
-import { canvasStore } from "../../../../store/canvasStore";
+import { useCanvasState } from "../../../../store/store";
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -16,9 +16,10 @@ type GLTFResult = GLTF & {
 
 export const LightSwitch = () => {
   const { nodes, materials } = useGLTF("/assets/models/lightSwitch/scene.gltf") as GLTFResult;
+  const { toggleIsLightOn } = useCanvasState();
 
   const handleClick = () => {
-    canvasStore.isLightOn = !canvasStore.isLightOn;
+    toggleIsLightOn();
   };
 
   return (

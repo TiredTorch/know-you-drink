@@ -5,6 +5,6 @@ export const mainCanvasStyles = {
     height: "100vh",
     top: 0,
     left: 0,
-    overflow: "hidden"
+    overflow: "hidden",
   },
 };

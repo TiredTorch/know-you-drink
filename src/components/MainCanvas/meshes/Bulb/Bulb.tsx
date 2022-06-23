@@ -3,7 +3,7 @@ import { useFrame } from "@react-three/fiber";
 import { useRef } from "react";
 import { Color, Group, Mesh, MeshPhysicalMaterial, MeshStandardMaterial, PointLight } from "three";
 import { GLTF } from "three-stdlib";
-import { canvasStore } from "../../../../store/canvasStore";
+import { useCanvasState } from "../../../../store/store";
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -21,25 +21,27 @@ export const Bulb = () => {
   const { nodes, materials } = useGLTF("/assets/models/bulb/scene.gltf") as GLTFResult;
   const light = useRef<PointLight>(null);
 
+  const { isLightOn } = useCanvasState();
+
   useFrame(() => {
     if (light.current && glass.current) {
-      light.current.intensity = canvasStore.isLightOn ? .2 : .0;
+      light.current.intensity = isLightOn ? .2 : .0;
       const material = glass.current.material as MeshStandardMaterial;
-      material.emissive = new Color(canvasStore.isLightOn ? "yellow" : "black");
+      material.emissive = new Color(isLightOn ? "yellow" : "black");
       material.emissiveIntensity = 1;
     }
   });
 
   return (
     <group dispose={null}>
-      <group 
+      <group
         rotation={[-Math.PI / 2, 0, 0]}
         position={[0, 1, 0]}
       >
         <group rotation={[Math.PI / 2, 0, 0]} scale={0.01}>
           <group scale={0.15}>
             <mesh geometry={nodes.ALL_LAMP_lamp_0.geometry} material={materials.lamp} />
-            <mesh geometry={nodes.ALL_LAMP_glass_0.geometry} material={materials.glass} ref={glass}/>
+            <mesh geometry={nodes.ALL_LAMP_glass_0.geometry} material={materials.glass} ref={glass} />
           </group>
         </group>
       </group>
@@ -49,15 +51,5 @@ export const Bulb = () => {
         castShadow
       />
     </group>
-    // <group>
-    //   <primitive
-    //     object={model.scene}
-    //     position={[0, .5, 0]}
-    //   />
-    //   <pointLight
-    //     ref={light}
-    //     position={[0, 0, 0]}
-    //   />
-    // </group>
   );
 };
