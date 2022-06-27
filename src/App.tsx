@@ -1,11 +1,11 @@
-import { DrinkDescriptionBox } from "./components/DrinkDescriptionBox/DrinkDescriptionBox";
-import { MainCanvas } from "./components/MainCanvas/MainCanvas";
+import { BarPage } from "./pages/BarPage/BarPage";
+import { VisitingPage } from "./pages/VisitingPage/VisitingPage";
 
 export const App = () => {
   return (
     <>
-      <DrinkDescriptionBox />
-      <MainCanvas />
+      {/* <BarPage /> */}
+      <VisitingPage />
     </>
   );
 };

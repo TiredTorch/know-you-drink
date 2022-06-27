@@ -1,6 +1,14 @@
 import { useEffect, useState } from "react";
-import { Box, Button, Typography } from "@mui/material";
-import { useCanvasState, useDrinksData, useDrinkState } from "../../store/store";
+import { 
+  Box, 
+  Button,
+  Typography 
+} from "@mui/material";
+import { 
+  useCanvasState, 
+  useDrinksData, 
+  useDrinkState
+} from "../../store/store";
 import { drinkDescriptionBoxStyles } from "./DrinkDescriptionBox.styles";
 
 export const DrinkDescriptionBox = () => {

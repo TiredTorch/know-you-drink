@@ -1,4 +1,8 @@
-import { Mesh, MeshStandardMaterial, MeshPhysicalMaterial } from "three";
+import { 
+  Mesh, 
+  MeshStandardMaterial, 
+  MeshPhysicalMaterial 
+} from "three";
 import { GLTF } from "three-stdlib";
 
 export type BulbGLTF = GLTF & {

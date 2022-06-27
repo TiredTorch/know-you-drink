@@ -1,6 +1,10 @@
 import { useRef } from "react";
 import { useFrame } from "@react-three/fiber";
-import { EffectComposer, Sepia, Vignette } from "@react-three/postprocessing";
+import { 
+  EffectComposer, 
+  Sepia, 
+  Vignette 
+} from "@react-three/postprocessing";
 import { BlendFunction } from "postprocessing";
 import { useCanvasState } from "../../../store/store";
 import { CustomVignetteEffect } from "./EffectHelper.types";
@@ -17,7 +21,7 @@ export const EffectHelper = () => {
       vignetteRef.current.offset = (isLightOn ? .1 : .3);
     }
   });
-
+  
   return (
     <EffectComposer>
       <Vignette

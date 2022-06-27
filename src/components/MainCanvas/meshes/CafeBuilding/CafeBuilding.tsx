@@ -1,5 +1,10 @@
 import { useLoader } from "@react-three/fiber";
-import { BackSide, MeshPhysicalMaterial, RepeatWrapping, TextureLoader } from "three";
+import { 
+  BackSide, 
+  MeshPhysicalMaterial, 
+  RepeatWrapping, 
+  TextureLoader 
+} from "three";
 import { materialsAssets } from "./CafeBuilding.data";
 
 export const CafeBuilding = () => {

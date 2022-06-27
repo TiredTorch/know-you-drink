@@ -1,5 +1,10 @@
 import { useRef } from "react";
-import { Color, Mesh, MeshStandardMaterial, PointLight } from "three";
+import { 
+  Color, 
+  Mesh, 
+  MeshStandardMaterial, 
+  PointLight 
+} from "three";
 import { useFrame } from "@react-three/fiber";
 import { useGLTF } from "@react-three/drei";
 import { useCanvasState } from "../../../../store/store";

@@ -1,17 +1,15 @@
-import { useState, useEffect, Suspense } from "react";
-import { Box } from "@mui/material";
+import { Suspense, useEffect, useState } from "react";
 import { Physics } from "@react-three/cannon";
 import { ScrollControls } from "@react-three/drei";
-import { Canvas } from "@react-three/fiber";
-import { EffectHelper } from "./EffectHelper/EffectHelper";
-import { Bar } from "./meshes/Bar/Bar";
-import { Bulb } from "./meshes/Bulb/Bulb";
-import { CafeBuilding } from "./meshes/CafeBuilding/CafeBuilding";
-import { LightSwitch } from "./meshes/LightSwitch/LightSwitch";
-import { useCanvasState, useDrinkState } from "../../store/store";
-import { mainCanvasStyles } from "./MainCanvas.styles";
+import { EffectHelper } from "../../components/MainCanvas/EffectHelper/EffectHelper";
+import { Bar } from "../../components/MainCanvas/meshes/Bar/Bar";
+import { Bulb } from "../../components/MainCanvas/meshes/Bulb/Bulb";
+import { CafeBuilding } from "../../components/MainCanvas/meshes/CafeBuilding/CafeBuilding";
+import { LightSwitch } from "../../components/MainCanvas/meshes/LightSwitch/LightSwitch";
+import { WithCanvasPageLayout } from "../../layouts/WithCanvasPageLayout/WithCanvasPageLayout";
+import { useDrinkState, useCanvasState } from "../../store/store";
 
-export const MainCanvas = () => {
+export const BarPage = () => {
   const { model } = useDrinkState();
   const { isDescriptionActive } = useCanvasState();
   const [activeModel, setActiveModel] = useState([model]);
@@ -19,42 +17,37 @@ export const MainCanvas = () => {
   useEffect(() => {
     setActiveModel([model]);
   }, [model]);
-
+  
   return (
-    <Box
-      component={"div"}
-      sx={mainCanvasStyles.root}
+    <WithCanvasPageLayout
+      withDescriptionPage
     >
-      <Canvas
-        shadows
-      >
-        <Physics>
+      <Physics>
           <ScrollControls
             damping={1}
             style={{
               left: "15px"
             }}
           >
-            <Suspense fallback={null}> {/*Bar outlook*/}
+            <Suspense fallback={null}>
               <Bulb />
               <LightSwitch />
               <CafeBuilding />
               <Bar />
             </Suspense>
-            <Suspense fallback={null}> {/*Mapped drink models*/}
+            <Suspense fallback={null}>
               {
                 isDescriptionActive && (
                   activeModel?.map((item) => item)
                 )
               }
             </Suspense>
-            <> {/*Effects*/}
+            <> 
               <ambientLight intensity={0.03} />
               <EffectHelper />
             </>
           </ScrollControls>
         </Physics>
-      </Canvas>
-    </Box>
+    </WithCanvasPageLayout>
   );
 };
